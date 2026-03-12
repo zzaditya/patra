@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message</title>
+    <link rel="stylesheet" href="as1.css">
+</head>
+<body>
+
+    <!-- Login Box -->
+    <div id="login-box" class="container">
+        <h2>Member Login</h2>
+
+        <form>
+            <input type="text" id="username" placeholder="Username (try: your name)" required>
+            
+            <input type="password" id="password" placeholder="Password (try: 2802)" required>
+            
+            <button type="button" onclick="handleLogin()">Login</button>
+        </form>
+
+        <p id="error-message" style="color: red;"></p>
+    </div>
+
+    <!-- Welcome Box -->
+    <div id="welcome-box" class="container" style="display: none;">
+        <h1>Success!</h1>
+        <p id="display-name"></p>
+        <button type="button" onclick="location.reload()">Logout</button>
+    </div>
+
+    <script src="as.js"></script>
+</body>
+</html>

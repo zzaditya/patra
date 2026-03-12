@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday 🎂</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            transition: background 1s;
+        }
+
+        /* ---------- Scenes ---------- */
+        section {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: 1s;
+        }
+
+        section.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ---------- Scene 1 ---------- */
+        .scene1 {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        }
+
+        .scene1 h1 {
+            font-size: 3rem;
+            animation: bounce 2s infinite;
+        }
+
+        /* ---------- Scene 2 ---------- */
+        .scene2 {
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+        }
+
+        .name {
+            font-size: 2.5rem;
+            animation: glow 2s infinite alternate;
+        }
+
+        .age {
+            font-size: 2rem;
+            margin-top: 10px;
+        }
+
+        /* ---------- Cake ---------- */
+        .cake {
+            width: 200px;
+            height: 140px;
+            background: linear-gradient(200deg, #45070774, #5e1d0bfa);
+            border-radius: 0 0 20px 20px;
+            position: relative;
+            margin: 20px;
+            animation: float 3s infinite;
+        }
+
+        .candle {
+            width: 8px;
+            height: 40px;
+            background: white;
+            position: absolute;
+            top: -40px;
+            left: 95px;
+        }
+
+        .flame {
+            width: 14px;
+            height: 14px;
+            background: linear-gradient(135deg, #e6a179, #bd6c3d, yellow);
+            border-radius: 50%;
+            position: absolute;
+            top: -15px;
+            left: -2px;
+            animation: flicker .5s infinite;
+        }
+
+        /* ---------- Scene 3 (Slideshow) ---------- */
+        .scene3 {
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            color: white;
+        }
+
+        .slideshow {
+            width: 80%;
+            max-width: 420px;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            text-align: center;
+            animation: fade 1s;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .5);
+        }
+
+        .circle img {
+            border-radius: 50%;
+        }
+
+        .tilt img {
+            transform: rotate(-6deg);
+        }
+
+        .zoom img {
+            animation: zoom 3s infinite alternate;
+        }
+
+        .card img {
+            border-radius: 30px;
+            border: 4px solid white;
+        }
+
+        .slide p {
+            margin-top: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* ---------- Balloons ---------- */
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 60px;
+            border-radius: 50%;
+            animation: rise linear infinite;
+        }
+
+        /* ---------- Scene 4 ---------- */
+        .scene4 {
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: white;
+            text-align: center;
+        }
+
+        .message {
+            font-size: 1.8rem;
+            padding: 20px;
+            border: 2px dashed white;
+            animation: glow 2s infinite alternate;
+        }
+
+        /* ---------- Buttons ---------- */
+        .controls {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+
+        button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 5px;
+            background: #fff;
+        }
+
+        /* ---------- Animations ---------- */
+        @keyframes bounce {
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px #fff;
+            }
+
+            to {
+                box-shadow: 0 0 30px gold;
+            }
+        }
+
+        @keyframes float {
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes flicker {
+            50% {
+                opacity: .5;
+            }
+        }
+
+        @keyframes rise {
+            to {
+                transform: translateY(-120vh);
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.08);
+            }
+        }
+
+        /* ---------- Responsive ---------- */
+        @media(max-width:600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .name {
+                font-size: 2rem;
+            }
+
+            .message {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button onclick="toggleMusic()">🎵 Music</button>
+        <button onclick="changeTheme()">🎨 Theme</button>
+    </div>
+
+    <audio id="music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+    </audio>
+
+    <!-- Scene 1 -->
+    <section class="scene1 active">
+        <h1>🎉 Happy Birthday 🎉</h1>
+        <p>Swipe into happiness ✨</p>
+    </section>
+
+    <!-- Scene 2 -->
+    <section class="scene2">
+        <div class="name">🎂 jo 🎂</div>
+        <div class="age">Turning 21 Today 🎈</div>
+        <div class="cake">
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scene 3 : Picture Slides -->
+    <section class="scene3">
+        <h2>📸 Beautiful Moments 📸</h2>
+        <div class="slideshow">
+
+            <div class="slide active circle">
+                <img src="https://picsum.photos/400/400?1">
+                <p>Pure Smiles ✨</p>
+            </div>
+
+            <div class="slide">
+                <img src="https://picsum.photos/400/400?2">
+                <p>Golden Memories ❤️</p>
+            </div>
+
+            <div class="slide tilt">
+                <img src="https://picsum.photos/400/400?3">
+                <p>Dream Big 🌟</p>
+            </div>
+
+            <div class="slide card zoom">
+                <img src="https://picsum.photos/400/400?4">
+                <p>Cheers to Life 🥂</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Scene 4 -->
+    <section class="scene4">
+        <div class="message">
+            🌟 May your life be filled with joy,<br>
+            success & unforgettable moments.<br><br>
+            <b>Have an Amazing Year Ahead! 🎂🎉</b>
+
+        </div>
+    </section>
+
+    <script>
+        /* Scene transition */
+        const scenes = document.querySelectorAll("section");
+        let index = 0;
+        setInterval(() => {
+            scenes[index].classList.remove("active");
+            index++;
+            if (index < scenes.length) scenes[index].classList.add("active");
+        }, 4500);
+
+        /* Slideshow */
+        const slides = document.querySelectorAll(".slide");
+        let s = 0;
+        setInterval(() => {
+            slides[s].classList.remove("active");
+            s = (s + 1) % slides.length;
+            slides[s].classList.add("active");
+        }, 3000);
+
+        /* Balloons */
+        const scene3 = document.querySelector(".scene3");
+        for (let i = 0; i < 12; i++) {
+            let b = document.createElement("div");
+            b.className = "balloon";
+            b.style.left = Math.random() * 100 + "vw";
+            b.style.background = `hsl(${Math.random() * 360},70%,60%)`;
+            b.style.animationDuration = (4 + Math.random() * 4) + "s";
+            scene3.appendChild(b);
+        }
+
+        /* Music */
+        const music = document.getElementById("music");
+        let play = false;
+        function toggleMusic() {
+            play ? music.pause() : music.play();
+            play = !play;
+        }
+
+        /* Theme Change */
+        let theme = 0;
+        function changeTheme() {
+            const themes = [
+                "linear-gradient(135deg,#ff9a9e,#fad0c4)",
+                "linear-gradient(135deg,#a1c4fd,#c2e9fb)",
+                "linear-gradient(135deg,#fbc2eb,#a6c1ee)"
+            ];
+            document.body.style.background = themes[theme % themes.length];
+            theme++;
+        }
+    </script>
+
+</body>
+
+</html>

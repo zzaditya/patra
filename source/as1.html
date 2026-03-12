@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Message</title>
+    <link rel="stylesheet" href="as1.css">
+</head>
+<body>
+
+    <!-- Login Box -->
+    <div id="login-box" class="container">
+        <h2>Member Login</h2>
+
+        <form onsubmit="event.preventDefault(); handleLogin();">
+            <input type="text" id="username" placeholder="Username (try:your name)" required>
+            <input type="password" id="password" placeholder="Password (try: 2802)" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <p id="error-message"></p>
+    </div>
+
+    <!-- Welcome Box -->
+    <div id="welcome-box" class="container" style="display: none;">
+
+        <h1 id="page-title">Welcome ❤️</h1>
+        <h2 id="page-title">dhyaan se padhna  ❤️</h2>
+
+        <!-- Dynamic Content -->
+        <div id="page-content">
+
+            <p id="page-message" style="font-size:18px;"></p>
+
+            <img id="page-image" width="250" style="border-radius:15px; margin:15px 0;">
+
+            <br>
+
+            <button id="next-btn" onclick="nextPage()">Next ➜</button>
+            <button id="logout-btn" onclick="logout()" style="display:none;">Logout</button>
+
+        </div>
+
+        <!-- Music Player -->
+        <audio id="bg-music"></audio>
+
+    </div>
+
+    <script src="as1.js"></script>
+</body>
+</html>
