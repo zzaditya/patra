@@ -25,7 +25,7 @@ const pages = [
     },
     {
         message: "its  you  and  only  you ✨",
-        image: "1.jpg",
+        image: ".jpg",
         music: "p.mpeg"
     },
     {
