@@ -30,7 +30,7 @@ const pages = [
     },
     {
         message: "plz scan  me ",
-        image: "n1.jpeg ",
+        image: "c1.jpeg ",
         music:"l.mpeg"
     }
 ];
